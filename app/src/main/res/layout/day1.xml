@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+    <androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+        android:layout_height="300dp"
+       android:layout_margin="20dp"
+        android:layout_marginBottom="400dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="9dp"
+            tools:layout_editor_absoluteY="239dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/descriptionBox"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dateLayout"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        tools:text="Mozilla description "
+                        tools:textColor="@color/black"
+                        tools:textSize="15dp">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:id="@+id/dateLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvName"
+                        android:layout_alignStart="@+id/tvName"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            tools:text="Thursday">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/descriptionBox"
+                        android:layout_marginLeft="10dp"
+                        android:text="Workshop Name"
+                        android:textColor="@color/black"
+                        android:textSize="25dp"
+                        tools:ignore="NotSibling">
+
+                    </TextView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/imageBox"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_above="@+id/descriptionBox"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/img">
+
+            </ImageView>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
