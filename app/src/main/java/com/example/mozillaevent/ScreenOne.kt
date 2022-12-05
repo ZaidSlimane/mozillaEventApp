@@ -13,6 +13,8 @@ class ScreenOne : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dayone)
 
+        getEventWorkshops()
+
 
         val recyclerview =  findViewById<RecyclerView>(R.id.recyclerView)
 
@@ -37,6 +39,10 @@ class ScreenOne : AppCompatActivity() {
 
 
 
+
+    }
+
+    private fun getEventWorkshops() {
 
     }
 }
