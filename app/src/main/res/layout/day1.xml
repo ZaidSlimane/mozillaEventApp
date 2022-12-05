@@ -93,6 +93,10 @@ android:layout_width="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginLeft="-1dp"
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="4dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/img">
 

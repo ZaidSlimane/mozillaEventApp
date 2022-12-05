@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "69513214728",
+    "project_id": "devision-app",
+    "storage_bucket": "devision-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69513214728:android:ff5f7e54bb33a007278abd",
+        "android_client_info": {
+          "package_name": "com.example.mozillaevent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69513214728-dhvjoqboin2s5slo90nns50vvqlkj4u2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0CK8kBaYATiNErW_agb_euKuDX_zAdsU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69513214728-dhvjoqboin2s5slo90nns50vvqlkj4u2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

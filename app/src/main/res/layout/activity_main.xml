@@ -34,9 +34,8 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_weight="1"
-            android:backgroundTint="@color/lightGray"
             android:elevation="30dp"
-
+            android:backgroundTint="@color/Orange"
             android:layout_margin="20dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="15dp"
@@ -54,12 +53,10 @@
                     android:layout_height="180dp"
                     android:gravity="center"
                     android:textColor="#ffff"
-
                     android:onClick="onClick"
                     android:text="DAY 1"
                     android:textAlignment="center"
                     android:textSize="100sp"
-
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -75,7 +72,6 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_weight="1"
-
             android:backgroundTint="@color/Orange"
             android:layout_margin="20dp"
             app:cardCornerRadius="15dp"
@@ -92,14 +88,15 @@
                     android:gravity="center"
                     android:text="DAY 2"
                     android:textColor="#ffff"
-
                     android:textAlignment="center"
                     android:textSize="100sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
