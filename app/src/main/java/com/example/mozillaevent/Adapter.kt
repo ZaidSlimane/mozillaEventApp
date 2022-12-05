@@ -1,14 +1,16 @@
 package com.example.mozillaevent
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 
-class Adapter(val items: List<Items>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,7 +42,10 @@ class Adapter(val items: List<Items>) : RecyclerView.Adapter<Adapter.ViewHolder>
         }
 
         fun bind(element: Items) {
-            image.setImageResource(element.image)
+//            image.setImageResource(element.image!!)
+            Glide.with(context!!)
+                .load(element.image)
+                .into(image)
             description.text = element.description
             cardName.text = element.cardName
             day.text = element.day

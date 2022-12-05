@@ -16,6 +16,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
+        android:id="@+id/RecviewProgBar"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"

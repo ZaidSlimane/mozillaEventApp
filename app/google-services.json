@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "69513214728",
+    "firebase_url": "https://devision-app-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "devision-app",
     "storage_bucket": "devision-app.appspot.com"
   },
