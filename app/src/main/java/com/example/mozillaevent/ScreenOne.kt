@@ -21,10 +21,16 @@ class ScreenOne : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
     private lateinit var Recviewprogbar: ProgressBar
 
+    private var day: Int =0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dayone)
-        getEventWorkshops()
+
+
+        supportActionBar!!.hide()
+        day= intent.getIntExtra("day",0)
+
         recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
         Recviewprogbar = findViewById(R.id.RecviewProgBar)
 
@@ -33,12 +39,14 @@ class ScreenOne : AppCompatActivity() {
         recyclerview.apply {
             layoutManager = LinearLayoutManager(this@ScreenOne)
         }
+        getEventWorkshops()
     }
 
     private fun getEventWorkshops() {
         dbref = FirebaseDatabase.getInstance().getReference("EventWorkshops")
-        dbref.addValueEventListener(object : ValueEventListener {
+        dbref.child(day.toString()).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 workshopslist.clear()
                 if (snapshot.exists()) {
                     for (wssnap in snapshot.children) {
@@ -54,7 +62,9 @@ class ScreenOne : AppCompatActivity() {
 
             }
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(applicationContext, "Something went wrong please try again", Toast.LENGTH_LONG).
+                show()
+                this@ScreenOne.finish()
             }
 
         })

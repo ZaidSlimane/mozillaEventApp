@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 
 data class Items (
-    val image: Int?=null,
+    val image: String? = null,
     val cardName: String?=null,
     val day: String?=null,
     val description: String?=null

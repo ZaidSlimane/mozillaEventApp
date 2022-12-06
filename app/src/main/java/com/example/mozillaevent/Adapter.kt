@@ -1,4 +1,3 @@
-
 package com.example.mozillaevent
 
 import android.content.Context
@@ -48,6 +47,7 @@ class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapt
             cardName = view.findViewById(R.id.tvName)
             attend_button = view.findViewById(R.id.attend_btn)
             intent=Intent(context,RegestrationActivitty::class.java)
+
         }
 
         fun bind(element: Items) {
@@ -60,6 +60,7 @@ class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapt
             day.text = element.day
 
            attend_button.setOnClickListener {
+               intent.putExtra("workshop",element.cardName)
               context.startActivity(intent)
             }
 

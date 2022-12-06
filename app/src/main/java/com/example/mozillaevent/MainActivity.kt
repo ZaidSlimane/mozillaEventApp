@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
     fun onClick(view:View){
 
         val intent = Intent(this, ScreenOne::class.java)
-            startActivity(intent)
+        intent.putExtra("day",1)
+        startActivity(intent)
 
 
     }
