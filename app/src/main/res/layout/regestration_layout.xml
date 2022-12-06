@@ -35,11 +35,10 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bahnschrift"
             android:gravity="center"
             android:text="DeVisoin Regestration"
             android:textColor="@color/Orange"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/et_name"
@@ -79,7 +78,24 @@
         </EditText>
 
         <EditText
-            android:id="@+id/user"
+            android:id="@+id/etEmail"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_edit_text"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="5dp"
+            android:elevation="10dp"
+            android:ems="15"
+            android:hint="Email"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_last_name">
+        </EditText>
+        <EditText
+            android:id="@+id/etField"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="24dp"

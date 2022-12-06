@@ -1,3 +1,4 @@
+
 package com.example.mozillaevent
 
 import android.content.ClipData.Item
@@ -23,28 +24,15 @@ class ScreenOne : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dayone)
-
-
-
-
         getEventWorkshops()
-
-
-
-
         recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
         Recviewprogbar = findViewById(R.id.RecviewProgBar)
 
         workshopslist = arrayListOf<Items>()
 
-
-
         recyclerview.apply {
             layoutManager = LinearLayoutManager(this@ScreenOne)
         }
-
-
-
     }
 
     private fun getEventWorkshops() {
@@ -62,12 +50,9 @@ class ScreenOne : AppCompatActivity() {
                     Recviewprogbar.visibility = View.GONE
                     val adap = Adapter(workshopslist,this@ScreenOne)
                     recyclerview.adapter = adap
-
-
                 }
 
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
