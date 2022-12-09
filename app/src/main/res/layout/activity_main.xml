@@ -53,7 +53,7 @@
                     android:layout_height="180dp"
                     android:gravity="center"
                     android:textColor="#ffff"
-                    android:onClick="onClick"
+                    android:onClick="onClickday1"
                     android:text="DAY 1"
                     android:textAlignment="center"
                     android:textSize="100sp"
@@ -83,10 +83,12 @@
 
 
                 <TextView
+                    android:id="@+id/tvDayTwo"
                     android:layout_width="369dp"
                     android:layout_height="180dp"
                     android:gravity="center"
                     android:text="DAY 2"
+                    android:onClick="onClickday2"
                     android:textColor="#ffff"
                     android:textAlignment="center"
                     android:textSize="100sp"
@@ -119,10 +121,12 @@
 
 
                 <TextView
+                    android:id="@+id/tvDayThere"
                     android:layout_width="369dp"
                     android:layout_height="180dp"
                     android:gravity="center"
                     android:text="DAY 3"
+                    android:onClick="onClickday3"
                     android:textAlignment="center"
                     android:textSize="100sp"
                     android:textColor="#ffff"
@@ -150,12 +154,13 @@
 
 
                 <TextView
+                    android:id="@+id/tvDayFour"
                     android:layout_width="369dp"
                     android:layout_height="198dp"
                     android:gravity="center"
                     android:text="DAY 4"
                     android:textColor="#ffff"
-
+                    android:onClick="onClickday4"
                     android:textAlignment="center"
                     android:textSize="100sp"
                     app:layout_constraintBottom_toBottomOf="parent"

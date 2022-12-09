@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.Date
 
 class RegestrationActivitty : AppCompatActivity() {
     private lateinit var database: DatabaseReference
@@ -18,6 +19,9 @@ class RegestrationActivitty : AppCompatActivity() {
         setContentView(R.layout.regestration_layout)
         workshopName = intent.getStringExtra("workshop")!!
         showRegestrationSheet()
+
+        val date :Date
+
 
     }
 
