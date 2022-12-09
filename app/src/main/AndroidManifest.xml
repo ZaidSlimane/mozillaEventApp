@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScreenOne"></activity>
+        <activity android:name=".RegestrationActivitty"></activity>
 
     </application>
 

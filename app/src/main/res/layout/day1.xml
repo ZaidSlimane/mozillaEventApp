@@ -42,7 +42,10 @@
                         android:layout_toStartOf="@+id/attend_btn"
                         tools:text="Mozilla description "
                         tools:textColor="@color/white"
-                        tools:textSize="15dp">
+                        tools:textSize="15dp"
+                        android:layout_toLeftOf="@+id/attend_btn"
+                        android:layout_marginEnd="10dp"
+                        android:maxLines="2">
 
                     </TextView>
 

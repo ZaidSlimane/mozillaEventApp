@@ -1,21 +1,30 @@
-
 package com.example.mozillaevent
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import java.time.Instant
+import java.time.LocalDateTime
+import java.util.Date
 
 
-class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(val items: List<Items>, val context: Context) :
+    RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,6 +32,7 @@ class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapt
         return ViewHolder(item)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val items = items[position]
         holder.bind(items)
@@ -38,8 +48,9 @@ class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapt
         val cardName: TextView
         val day: TextView
         val description: TextView
-        val attend_button : Button
-        val intent : Intent
+        val attend_button: Button
+        val intent: Intent
+        val descCardView: CardView
 
         init {
             image = view.findViewById(R.id.imageBox)
@@ -47,9 +58,12 @@ class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapt
             day = view.findViewById(R.id.tvDay)
             cardName = view.findViewById(R.id.tvName)
             attend_button = view.findViewById(R.id.attend_btn)
-            intent=Intent(context,RegestrationActivitty::class.java)
+            intent = Intent(context, RegestrationActivitty::class.java)
+            descCardView = view.findViewById(R.id.descriptionBox)
+
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(element: Items) {
 //            image.setImageResource(element.image!!)
             Glide.with(context!!)
@@ -58,11 +72,25 @@ class Adapter(val items: List<Items>, val context: Context) : RecyclerView.Adapt
             description.text = element.description
             cardName.text = element.cardName
             day.text = element.day
+            val date = Date.from(Instant.now())
+            if (date.time.toInt()>element.startDate!!.time.toInt()) {
 
-           attend_button.setOnClickListener {
-              context.startActivity(intent)
+                descCardView.setBackgroundColor(Color.GREEN)
             }
 
+
+
+            if (date.time.toInt()>=element.endDate!!.time.toInt()) {
+                descCardView.setBackgroundColor(Color.GRAY)
+                //attend_button.isEnabled=false
+                attend_button.visibility=View.GONE
+            }
+
+
+            attend_button.setOnClickListener {
+                intent.putExtra("workshop", element.cardName)
+                context.startActivity(intent)
+            }
 
 
         }
