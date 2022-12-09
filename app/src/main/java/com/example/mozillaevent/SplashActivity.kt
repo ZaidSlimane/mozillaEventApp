@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.mozillaevent.databinding.AccessManagerBinding
 import com.example.mozillaevent.databinding.SplashScreenBinding
 
@@ -18,12 +20,16 @@ import com.example.mozillaevent.databinding.SplashScreenBinding
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: SplashScreenBinding
     private  val password : String ="MozillaManager"
+    private lateinit var mainCardView: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mainCardView=findViewById(R.id.cardView)
+        mainCardView.setOnClickListener(View.OnClickListener {
+            this.startActivity(Intent(this,MainActivity::class.java))
+        })
         showPasswordDialog()
 
         }
