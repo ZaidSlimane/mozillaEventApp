@@ -50,7 +50,9 @@ class Adapter(val items: List<Items>, val context: Context) :
         val description: TextView
         val attend_button: Button
         val intent: Intent
+        val intent1: Intent
         val descCardView: CardView
+        val workshopRL: RelativeLayout
 
         init {
             image = view.findViewById(R.id.imageBox)
@@ -59,7 +61,9 @@ class Adapter(val items: List<Items>, val context: Context) :
             cardName = view.findViewById(R.id.tvName)
             attend_button = view.findViewById(R.id.attend_btn)
             intent = Intent(context, RegestrationActivitty::class.java)
+            intent1 = Intent(context, detailsActivity::class.java)
             descCardView = view.findViewById(R.id.descriptionBox)
+            workshopRL= view.findViewById(R.id.workshopLayout)
 
         }
 
@@ -71,7 +75,7 @@ class Adapter(val items: List<Items>, val context: Context) :
                 .into(image)
             description.text = element.description
             cardName.text = element.cardName
-            day.text = element.day
+            day.text = element.day+"\n"+" form "+element.startDate!!.hours+":"+element.startDate.minutes+" to "+element.endDate!!.hours+":"+element.endDate.minutes
             val date = Date.from(Instant.now())
             if (date.time.toInt()>element.startDate!!.time.toInt()) {
 
@@ -86,6 +90,10 @@ class Adapter(val items: List<Items>, val context: Context) :
                 attend_button.visibility=View.GONE
             }
 
+            workshopRL.setOnClickListener{
+                intent1.putExtra("workahop1",element)
+                context.startActivity(intent1)
+            }
 
             attend_button.setOnClickListener {
                 intent.putExtra("workshop", element.cardName)

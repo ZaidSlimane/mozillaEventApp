@@ -20,7 +20,7 @@ class RegestrationActivitty : AppCompatActivity() {
         workshopName = intent.getStringExtra("workshop")!!
         showRegestrationSheet()
 
-        val date :Date
+
 
 
     }
@@ -36,9 +36,9 @@ class RegestrationActivitty : AppCompatActivity() {
                 val lastName = findViewById<EditText>(R.id.et_last_name).text
                 val email = findViewById<EditText>(R.id.etEmail).text
 
-                database = FirebaseDatabase.getInstance().getReference(workshopName)
+                database = FirebaseDatabase.getInstance().getReference("1stRegestration")
                 val user = Attendee(firstName.toString(), lastName.toString(), email.toString())
-                database.child(firstName.toString()).setValue(user).addOnSuccessListener {
+                database.child(workshopName).child(firstName.toString()).setValue(user).addOnSuccessListener {
                     firstName.clear()
                     lastName.toString()
                     email.clear()

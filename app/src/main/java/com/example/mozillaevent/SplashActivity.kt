@@ -22,6 +22,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         showPasswordDialog()
 
@@ -41,15 +42,17 @@ class SplashActivity : AppCompatActivity() {
                      Intent(context,ManagerActivity::class.java).also {
                         startActivity(it)
                     }
-                   Toast.makeText(context,"Oops, try again",Toast.LENGTH_LONG).show()
+                   Toast.makeText(context,"Manager Login Successfully",Toast.LENGTH_LONG).show()
                 }
 
-                setNegativeButton("Cancel"){dialog,ehich->
-                    Log.d("dialog", "negative button")
-                    setView(dialogLayout)
-                    show()
-                }
+
             }
+            setNegativeButton("Cancel"){dialog,ehich->
+                Log.d("dialog", "negative button")
+
+            }
+            setView(dialogLayout)
+            show()
         }
 
     }
