@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-private lateinit var day1:TextView
-private lateinit var day2:TextView
-private lateinit var day3:TextView
-private lateinit var day4:TextView
+
+
 class MainActivity : AppCompatActivity() {
+    private lateinit var day1:TextView
+    private lateinit var day2:TextView
+    private lateinit var day3:TextView
+    private lateinit var day4:TextView
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
