@@ -15,11 +15,12 @@ import java.util.Collections
 
 
 class ManagerActivity : AppCompatActivity() {
-   private lateinit var binding: ManagerRoomBinding
-   private  lateinit var database: DatabaseReference
-   private lateinit var recyclerView: RecyclerView
-   private lateinit var attendee_list: ArrayList<Attendee>
-
+    private lateinit var binding: ManagerRoomBinding
+    private lateinit var database: DatabaseReference
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var attendee_list: ArrayList<Attendee>
+    private lateinit var dbref: DatabaseReference
+    private lateinit var workshopslist: ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ManagerRoomBinding.inflate(layoutInflater)
@@ -31,46 +32,90 @@ class ManagerActivity : AppCompatActivity() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@ManagerActivity)
         }
+        workshopslist = arrayListOf<String>()
+        getWorkshopsNames()
 
-        getAttendeeData()
+
+    }
+
+    fun getAttendeeData() {
+        attendee_list.clear()
+
+        for (i in 0..workshopslist!!.size - 1) {
+
+            database = FirebaseDatabase.getInstance().getReference("Attendees")
+            database.child(workshopslist!!.get(i))
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+
+                        if (snapshot.exists()) {
+
+                            for (attendeeSnap in snapshot.children) {
+                                val attendee_s = attendeeSnap!!.getValue(Attendee::class.java)
+                                if (!attendee_list.contains(attendee_s))
+                                attendee_list.add(attendee_s!!)
+
+                            }
+                            //recyclerView.visibility = View.GONE
+                            Collections.sort(attendee_list!!)
+                            recyclerView.adapter = AttendeesAdapter(attendee_list)
+
+
+                        }
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(applicationContext, "Try again,please!", Toast.LENGTH_LONG)
+                            .show()
+                        this@ManagerActivity.finish()
+                    }
+                })
+        }
+    }
+
+
+    fun getWorkshopsNames(): Boolean {
+
+
+        dbref = FirebaseDatabase.getInstance().getReference("EventWorkshops")
+        workshopslist.clear()
+
+        for (i in 1..4) {
+            dbref.child(i.toString()).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    if (snapshot.exists()) {
+
+                        for (wssnap in snapshot.children) {
+
+                            val wsData = wssnap.getValue(Items::class.java)
+                            workshopslist.add(wsData!!.cardName!!)
+
+                            getAttendeeData()
+
+
+
+                        }
+
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+
 
         }
 
-    fun getAttendeeData(){
-       database = FirebaseDatabase.getInstance().getReference("Attendees")
-        database.addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
 
-                attendee_list.clear()
-                if (snapshot.exists()) {
-                    for (attendeeSnap in snapshot.children) {
-                      val attendee_s = attendeeSnap!!.getValue(Attendee::class.java)
-                        attendee_list.add(attendee_s!!)
-                        Toast.makeText(applicationContext, "Try again,please!"+attendee_s.toString(), Toast.LENGTH_LONG).
-                        show()
-                    }
-                    //recyclerView.visibility = View.GONE
-                    Collections.sort(attendee_list!!)
-                    recyclerView.adapter= AttendeesAdapter(attendee_list)
-
-
-                }
-
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext, "Try again,please!", Toast.LENGTH_LONG).
-                show()
-                this@ManagerActivity.finish()
-            }
-        })
-
-    }
-
-
-
-
+        return true
 
 
     }
+}
