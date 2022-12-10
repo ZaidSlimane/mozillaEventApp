@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mozillaevent.databinding.AccessManagerBinding
 import com.example.mozillaevent.databinding.ManagerRoomBinding
 import com.google.firebase.database.*
+import java.util.Collections
 
 
 class ManagerActivity : AppCompatActivity() {
@@ -49,6 +50,7 @@ class ManagerActivity : AppCompatActivity() {
                         show()
                     }
                     //recyclerView.visibility = View.GONE
+                    Collections.sort(attendee_list!!)
                     recyclerView.adapter= AttendeesAdapter(attendee_list)
 
 
