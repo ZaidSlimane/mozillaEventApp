@@ -36,17 +36,19 @@ class ManagerActivity : AppCompatActivity() {
         }
 
     fun getAttendeeData(){
-       database = FirebaseDatabase.getInstance().getReference("Attendee")
+       database = FirebaseDatabase.getInstance().getReference("Attendees")
         database.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 attendee_list.clear()
                 if (snapshot.exists()) {
                     for (attendeeSnap in snapshot.children) {
-                      val attendee_s = attendeeSnap.getValue(Attendee::class.java)
+                      val attendee_s = attendeeSnap!!.getValue(Attendee::class.java)
                         attendee_list.add(attendee_s!!)
+                        Toast.makeText(applicationContext, "Try again,please!"+attendee_s.toString(), Toast.LENGTH_LONG).
+                        show()
                     }
-                    recyclerView.visibility = View.GONE
+                    //recyclerView.visibility = View.GONE
                     recyclerView.adapter= AttendeesAdapter(attendee_list)
 
 

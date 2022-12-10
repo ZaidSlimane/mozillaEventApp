@@ -46,7 +46,7 @@ class SplashActivity : AppCompatActivity() {
             with(builder) {
                 setTitle("Manager Room")
                 setPositiveButton("Ok") { dialog, which ->
-                    if (editText.text.toString() == password) {
+                    if (editText.text.toString().trim() == password) {
                         Intent(context, ManagerActivity::class.java).also {
                             startActivity(it)
                         }
