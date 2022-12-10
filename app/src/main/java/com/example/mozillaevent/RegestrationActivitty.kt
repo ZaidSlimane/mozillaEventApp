@@ -36,9 +36,9 @@ class RegestrationActivitty : AppCompatActivity() {
                 val lastName = findViewById<EditText>(R.id.et_last_name).text
                 val email = findViewById<EditText>(R.id.etEmail).text
 
-                database = FirebaseDatabase.getInstance().getReference(workshopName)
-                val user = Attendee(firstName.toString(), lastName.toString(), email.toString())
-                database.child(firstName.toString()).setValue(user).addOnSuccessListener {
+                database = FirebaseDatabase.getInstance().getReference("Attendees")
+                val user = Attendee(firstName.toString(), lastName.toString(), email.toString(),workshopName)
+                database.child(workshopName).push().setValue(user).addOnSuccessListener {
                     firstName.clear()
                     lastName.toString()
                     email.clear()

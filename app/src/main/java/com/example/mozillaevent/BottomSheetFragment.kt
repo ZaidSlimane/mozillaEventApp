@@ -32,7 +32,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             val email = view.findViewById<EditText>(R.id.etEmail).text.toString()
 
             database = FirebaseDatabase.getInstance().getReference(workshopName)
-            val user = Attendee(firstName, lastName, email)
+            val user = Attendee(firstName, lastName, email, null)
             database.child(email).setValue(user)
             }
         return view

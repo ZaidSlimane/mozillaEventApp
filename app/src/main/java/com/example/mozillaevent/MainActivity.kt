@@ -26,21 +26,18 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         if (supportActionBar != null) {
             supportActionBar!!.hide()
         }
-        setContentView(R.layout.activity_main)
+
         day1=findViewById(R.id.tvDayOne)
         day2=findViewById(R.id.tvDayTwo)
         day3=findViewById(R.id.tvDayThere)
         day4=findViewById(R.id.tvDayFour)
 
-
         ChangeBtnsColor()
-
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -82,12 +79,9 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun onClickday2(view:View){
-
         val intent = Intent(this, ScreenOne::class.java)
         intent.putExtra("day",2)
         startActivity(intent)
-
-
     }
 
     fun onClickday3(view:View){

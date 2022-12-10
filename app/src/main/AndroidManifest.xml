@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".ScreenOne"></activity>
         <activity android:name=".RegestrationActivitty"></activity>
+        <activity android:name=".ManagerActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+
+
 
     </application>
 
