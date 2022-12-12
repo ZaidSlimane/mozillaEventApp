@@ -12,6 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
 
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="(Tip: Long press on the Image to be able to choose multiple images)"
+            android:textColor="@color/Orange"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        </TextView>
+
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="112dp"
@@ -75,7 +94,7 @@
                     android:id="@+id/tvUpload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add photos "
+                    android:text="Upload photos "
                     android:textColor="@color/Orange"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView7"
@@ -86,22 +105,24 @@
 
                 </TextView>
 
-                <ScrollView
-                    android:id="@+id/scrollView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView7"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView6">
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="200dp"
                         tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="140dp" />
+                        tools:layout_editor_absoluteY="140dp"
+                        android:id="@+id/ImagesRecView"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                        android:scrollbars="vertical"
+                        android:scrollbarSize="7dp"
+                        android:scrollbarStyle="outsideInset"
+                        />
 
-                </ScrollView>
+
 
                 <ImageView
                     android:id="@+id/imageView7"

@@ -53,7 +53,7 @@ class ManagerActivity : AppCompatActivity() {
 
                             for (attendeeSnap in snapshot.children) {
                                 val attendee_s = attendeeSnap!!.getValue(Attendee::class.java)
-                                if (!attendee_list.contains(attendee_s))
+                                if (!attendee_list.contains(attendee_s!!))
                                 attendee_list.add(attendee_s!!)
 
                             }
