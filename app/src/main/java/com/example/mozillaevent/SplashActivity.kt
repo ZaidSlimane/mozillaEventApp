@@ -34,6 +34,8 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
         }
 
+
+
         val image  = findViewById<TextView>(R.id.tvSection3)
         image.setOnClickListener {
 
@@ -66,5 +68,13 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
+
+
+
+    }
+    fun onClick (view: View){
+        Intent(this,ShareCenter::class.java).also {
+            startActivity(it)
+        }
     }
 }
