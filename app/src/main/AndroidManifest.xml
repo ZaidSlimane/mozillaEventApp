@@ -22,7 +22,9 @@
         <activity android:name=".RegestrationActivitty"></activity>
         <activity android:name=".ManagerActivity"></activity>
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ShareCenter"></activity>
+        <activity android:name=".ShareCenter"
+            android:windowSoftInputMode="adjustPan|adjustResize" ></activity>
+
         <activity android:name=".detailsActivity"></activity>
 
 

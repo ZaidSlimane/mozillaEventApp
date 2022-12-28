@@ -1,16 +1,14 @@
 package com.example.mozillaevent
 
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.WindowManager
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,13 +20,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class ShareCenter : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
     private lateinit var addImagesbtn: TextView
     private lateinit var addImagesImg: ImageView
     private lateinit var uploadbtn: TextView
+    private lateinit var CommentCounter : TextView
     private lateinit var uploadImg: ImageView
     private lateinit var ImagesList: ArrayList<Uri>
     private lateinit var mProgressDialog: ProgressDialog
@@ -48,31 +47,50 @@ class ShareCenter : AppCompatActivity() {
         setContentView(R.layout.share_center)
         supportActionBar!!.hide()
 
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
+
         mProgressDialog = ProgressDialog(this)
         mProgressDialog.setTitle("Please Wait...")
         mProgressDialog.setCancelable(false)
 
-
+        CommentCounter = findViewById(R.id.counter)
 
         val commentbtn = findViewById<Button>(R.id.button)
-        val commentSection = findViewById<EditText>(R.id.editText).text.toString()
+        val commentSection = findViewById<EditText>(R.id.editText)
 
-        commentbtn.setOnClickListener {
-            if (commentSection.isNotBlank() && commentSection.length > 20) {
-                commentDataBase = FirebaseDatabase.getInstance().getReference("Comments")
-                commentDataBase.child("Anonymous").push().setValue(commentSection)
-
-                Toast.makeText(this, "Thanks for your comment", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "comments must be > 20 characters", Toast.LENGTH_LONG).show()
+        val mTitleTextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(commentSection.text.toString().trim().length <= 100 ){
+                    CommentCounter.text = (100 - commentSection.text.toString().trim().length).toString()
+                    CommentCounter.setTextColor(Color.GREEN)
+                }
+                else{
+                    CommentCounter.text = "0"
+                    Toast.makeText(applicationContext , "100 characters are allowed", Toast.LENGTH_LONG).show()
+                    CommentCounter.setTextColor(Color.RED)
+                }
             }
+
+            override fun afterTextChanged(s: Editable) {}
         }
 
+        commentSection.addTextChangedListener(mTitleTextWatcher)
 
+        commentbtn.setOnClickListener {
+            if (commentSection.text.isBlank()) {
+                Toast.makeText(this, "Blank Field not allowed", Toast.LENGTH_LONG).show()
+            }
 
-
-
-
+            else{
+                commentDataBase = FirebaseDatabase.getInstance().getReference("Comments")
+                commentDataBase.child("Anonymous").push().setValue("${commentSection.text}")
+                commentSection.text.clear()
+                Toast.makeText(this, "Thank you for helping us", Toast.LENGTH_LONG).show()
+            }
+        }
 
 
 
@@ -80,7 +98,7 @@ class ShareCenter : AppCompatActivity() {
         ImagesList = arrayListOf<Uri>()
         ImagesList.clear()
         recyclerview.layoutManager = LinearLayoutManager(this)
-       // recyclerview.setHasFixedSize(true)
+        // recyclerview.setHasFixedSize(true)
         adap = ImagesAdapter(this@ShareCenter)
         recyclerview.adapter = adap
         adap.setImagesArrayList(ImagesList)
@@ -135,7 +153,7 @@ class ShareCenter : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // When an Image is picked
-        if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == Activity.RESULT_OK
+        if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK
             && null != data
         ) {
             if (data.getClipData() != null) {
@@ -178,7 +196,7 @@ class ShareCenter : AppCompatActivity() {
                         }
                         taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                             val imageUrl = it.toString()
-                          }
+                        }
                     })
 
                 ?.addOnFailureListener(OnFailureListener { e ->

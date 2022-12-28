@@ -40,13 +40,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
 
+                    android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/attend_btn"
+                    android:layout_toLeftOf="@+id/attend_btn"
+                    android:maxLines="2"
                     tools:text="Mozilla description "
                     tools:textColor="@color/white"
-                    tools:textSize="15dp"
-                    android:layout_toLeftOf="@+id/attend_btn"
-                    android:layout_marginEnd="10dp"
-                    android:maxLines="2">
+                    tools:textSize="15dp">
 
                 </TextView>
 

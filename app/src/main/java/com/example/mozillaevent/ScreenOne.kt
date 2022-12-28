@@ -69,6 +69,8 @@ class ScreenOne : AppCompatActivity() {
                     Recviewprogbar.visibility = View.GONE
                     val adap = Adapter(workshopslist,this@ScreenOne)
                     recyclerview.adapter = adap
+
+                    adap.notifyDataSetChanged()
                 }
 
             }
