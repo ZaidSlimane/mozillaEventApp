@@ -19,6 +19,7 @@ import java.time.Instant
 import java.util.Date
 
 
+
 class Adapter(val items: List<Items>, val context: Context) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
@@ -30,7 +31,7 @@ class Adapter(val items: List<Items>, val context: Context) :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val items = items[position]
+            val items = items[position]
         holder.bind(items)
     }
 
@@ -73,8 +74,9 @@ class Adapter(val items: List<Items>, val context: Context) :
             cardName.text = element.cardName
             day.text = element.day+"\n"+" form "+element.startDate!!.hours+":"+element.startDate.minutes+" to "+element.endDate!!.hours+":"+element.endDate.minutes
             val date = Date.from(Instant.now())
-            if (date.time.toInt()>element.startDate!!.time.toInt()) {
 
+
+            if (date.time.toInt()>element.startDate!!.time.toInt()) {
                 descCardView.setBackgroundColor(Color.GREEN)
             }
 

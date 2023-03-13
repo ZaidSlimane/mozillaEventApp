@@ -42,25 +42,25 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun ChangeBtnsColor() {
-        if (LocalDate.now().dayOfYear==351){
+        if (LocalDate.now().dayOfMonth==27){
             day1.setBackgroundColor(Color.GREEN)
         }
-        if (LocalDate.now().dayOfYear==352){
+        if (LocalDate.now().dayOfMonth==28){
             day1.setBackgroundColor(Color.GRAY)
             day2.setBackgroundColor(Color.GREEN)
         }
-        if (LocalDate.now().dayOfYear==353){
+        if (LocalDate.now().dayOfMonth==29){
             day1.setBackgroundColor(Color.GRAY)
             day2.setBackgroundColor(Color.GRAY)
             day3.setBackgroundColor(Color.GREEN)
         }
-        if (LocalDate.now().dayOfYear==354){
+        if (LocalDate.now().dayOfMonth==30){
             day1.setBackgroundColor(Color.GRAY)
             day2.setBackgroundColor(Color.GRAY)
             day3.setBackgroundColor(Color.GRAY)
             day4.setBackgroundColor(Color.GREEN)
         }
-        if (LocalDate.now().dayOfYear>354|| LocalDate.now().year>2022){
+        if (LocalDate.now().year>2022){
             day1.setBackgroundColor(Color.GRAY)
             day2.setBackgroundColor(Color.GRAY)
             day3.setBackgroundColor(Color.GRAY)
