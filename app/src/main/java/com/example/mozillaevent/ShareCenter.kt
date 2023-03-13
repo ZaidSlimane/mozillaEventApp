@@ -55,9 +55,10 @@ class ShareCenter : AppCompatActivity() {
 
 
         val commentbtn = findViewById<Button>(R.id.button)
-        val commentSection = findViewById<EditText>(R.id.editText).text.toString()
+
 
         commentbtn.setOnClickListener {
+            val commentSection = findViewById<EditText>(R.id.editText).text.toString()
             if (commentSection.isNotBlank() && commentSection.length > 20) {
                 commentDataBase = FirebaseDatabase.getInstance().getReference("Comments")
                 commentDataBase.child("Anonymous").push().setValue(commentSection)

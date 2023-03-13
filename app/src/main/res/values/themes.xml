@@ -12,6 +12,23 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowBackground">@color/Background_color</item>
 
+    </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+
+    </style>
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+    <style name="DarkSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/dark_spinner_background</item>
+        <item name="android:popupBackground">#D6D6D6</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

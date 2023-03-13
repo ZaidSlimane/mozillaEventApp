@@ -4,28 +4,61 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/mozzila_campus_club"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MozillaEvent">
         <activity
-            android:name=".SplashActivity"
+            android:name=".FacisSpace"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Login"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MentorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Workshop"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".FirstPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
-        <activity android:name=".ScreenOne"></activity>
-        <activity android:name=".RegestrationActivitty"></activity>
-        <activity android:name=".ManagerActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ShareCenter"></activity>
-        <activity android:name=".detailsActivity"></activity>
-
-
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity android:name=".ScreenOne" />
+        <activity android:name=".RegestrationActivitty" />
+        <activity android:name=".ManagerActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ShareCenter" />
+        <activity android:name=".detailsActivity" />
     </application>
 
 </manifest>

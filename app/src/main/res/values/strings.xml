@@ -1,5 +1,23 @@
 <resources>
-    <string name="app_name">mozillaEvent</string>
+    <string name="app_name">DeVision</string>
     <string name="description"> The campus club event is a great way to connect with other students and faculty , as well
 as get some fun opportunities to build confidence in your skills. Should you be interested in attending.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="numbers">
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+
+    <string-array name="grade">
+        <item>L1</item>
+        <item>L2</item>
+        <item>L3</item>
+        <item>M1</item>
+        <item>M2</item>
+        <item>ENG1</item>
+        <item>Other</item>
+    </string-array>
 </resources>

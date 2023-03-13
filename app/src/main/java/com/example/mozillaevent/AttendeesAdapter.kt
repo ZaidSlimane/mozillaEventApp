@@ -25,6 +25,7 @@ RecyclerView.Adapter<AttendeesAdapter.MyViewHolder>()
         holder.lastname.text=att_list.lastName
         holder.email.text=att_list.email
         holder.workshopname.text= att_list.workshopName
+        holder.grade.text = att_list.grade
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +37,7 @@ RecyclerView.Adapter<AttendeesAdapter.MyViewHolder>()
        val lastname: TextView = view.findViewById(R.id.textView6)
        val email : TextView = view.findViewById(R.id.textView4)
        val workshopname : TextView = view.findViewById(R.id.textView5)
-
+        val grade : TextView = view.findViewById(R.id.gradem)
     }
 
 }
