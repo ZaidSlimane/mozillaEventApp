@@ -50,7 +50,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-<<<<<<< HEAD
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
@@ -60,18 +59,6 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ShareCenter" />
         <activity android:name=".detailsActivity" />
-=======
-        <activity android:name=".ScreenOne"></activity>
-        <activity android:name=".RegestrationActivitty"></activity>
-        <activity android:name=".ManagerActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ShareCenter"
-            android:windowSoftInputMode="adjustPan|adjustResize" ></activity>
-
-        <activity android:name=".detailsActivity"></activity>
-
-
->>>>>>> 683d3fea65bdaaf2033ce15795b83e1681f116ab
     </application>
 
 </manifest>
