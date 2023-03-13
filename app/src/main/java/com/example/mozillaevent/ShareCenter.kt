@@ -58,7 +58,7 @@ class ShareCenter : AppCompatActivity() {
         CommentCounter = findViewById(R.id.counter)
 
         val commentbtn = findViewById<Button>(R.id.button)
-<<<<<<< HEAD
+
 
 
         commentbtn.setOnClickListener {
@@ -70,7 +70,7 @@ class ShareCenter : AppCompatActivity() {
                 Toast.makeText(this, "Thanks for your comment", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "comments must be > 20 characters", Toast.LENGTH_LONG).show()
-=======
+
         val commentSection = findViewById<EditText>(R.id.editText)
 
         val mTitleTextWatcher = object : TextWatcher {
@@ -85,7 +85,7 @@ class ShareCenter : AppCompatActivity() {
                     Toast.makeText(applicationContext , "100 characters are allowed", Toast.LENGTH_LONG).show()
                     CommentCounter.setTextColor(Color.RED)
                 }
->>>>>>> 683d3fea65bdaaf2033ce15795b83e1681f116ab
+
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -104,7 +104,7 @@ class ShareCenter : AppCompatActivity() {
                 commentSection.text.clear()
                 Toast.makeText(this, "Thank you for helping us", Toast.LENGTH_LONG).show()
             }
-        }
+        }}}
 
 
 
@@ -218,4 +218,4 @@ class ShareCenter : AppCompatActivity() {
                 })
         }
     }
-}
+        }
