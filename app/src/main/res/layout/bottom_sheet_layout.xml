@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:background="@drawable/rounded_corners_buttom"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/daymain"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_corners"
+            android:paddingHorizontal="25dp"
+            android:paddingBottom="3dp"
+            android:text="Day 1"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_corners_arrows"
+            android:src="@drawable/left_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_corners_arrows"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_corners_arrows"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_search_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView9"
+            app:layout_constraintStart_toEndOf="@+id/daymain"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_corners_clicked"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_settings_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/daymain"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2d2c2d"
+        android:paddingBottom="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+
+        <ImageView
+            android:id="@+id/pr"
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/rounded_corners_settings"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_person"
+
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView6"
+            android:onClick="changePrfImg"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:background="@drawable/corner_radius_trnsp"
+            android:paddingTop="10dp"
+            android:text="Change profile"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/pr"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="changePrftxt"/>
+
+        <ImageView
+            android:id="@+id/rm"
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/rounded_corners_settings"
+            android:padding="5dp"
+            android:src="@drawable/manager"
+            android:onClick="ManageImg"
+
+            app:layout_constraintBottom_toBottomOf="@+id/textmng"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textmng" />
+
+        <TextView
+            android:id="@+id/textmng"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/corner_radius_trnsp"
+            android:paddingTop="10dp"
+            android:text="Managers room"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/rm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            android:onClick="ManageTxt"
+            />
+
+        <ImageView
+            android:id="@+id/shr"
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/rounded_corners_settings"
+            android:padding="5dp"
+            android:src="@drawable/share"
+            app:layout_constraintBottom_toBottomOf="@+id/shrimg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/shrimg"
+            android:onClick="shareImg"/>
+
+        <TextView
+            android:id="@+id/shrimg"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/corner_radius_trnsp"
+            android:paddingTop="10dp"
+            android:text="Share center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            app:layout_constraintEnd_toStartOf="@+id/shr"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textmng"
+            android:onClick="shareTxt"/>
+
+        <ImageView
+            android:id="@+id/addimg"
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/rounded_corners_settings"
+            android:padding="5dp"
+            android:src="@drawable/add"
+            app:layout_constraintBottom_toBottomOf="@+id/add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/add" />
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/corner_radius_trnsp"
+            android:paddingTop="10dp"
+            android:text="Additional settings"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            app:layout_constraintEnd_toStartOf="@+id/addimg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shr" />
+
+        <RelativeLayout
+            android:layout_marginStart="10dp"
+            android:layout_width="168dp"
+            android:layout_height="94dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add"
+            android:background="@drawable/corner_radius_trnsp"
+            android:onClick="TurnOff">
+
+            <ImageView
+                android:id="@+id/turnoffimg"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="7dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_baseline_power_settings_new_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Turn Off"
+                android:textColor="@color/white"
+                android:layout_below="@id/turnoffimg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginEnd="10dp"
+            android:layout_width="168dp"
+            android:layout_height="94dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@id/add"
+            android:background="@drawable/corner_radius_trnsp"
+            android:onClick="LogOut"
+            >
+            <ImageView
+                android:id="@+id/logoutimg"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="7dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_baseline_logout_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Log Out"
+                android:textColor="@color/white"
+                android:layout_below="@id/logoutimg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"/>
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
