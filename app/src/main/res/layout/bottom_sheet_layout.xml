@@ -4,7 +4,9 @@
     android:id="@+id/header_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="@drawable/rounded_corners3"
+    >
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout11"
@@ -81,7 +83,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2d2c2d"
+        android:background="@color/transparent"
         android:paddingBottom="30dp"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
 

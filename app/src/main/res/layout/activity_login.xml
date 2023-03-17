@@ -15,23 +15,28 @@
         android:foregroundTintMode="src_atop">
 
         <ImageView
-
             android:id="@+id/FirstPageBackgroundImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginTop="6dp"
             android:src="@drawable/logo1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-android:layout_marginTop="6dp"
 
-            />
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.487" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"><ImageView
         android:id="@+id/imageView"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -63,20 +68,42 @@ android:layout_marginTop="6dp"
         android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
+android:padding="10dp"
 
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="User Name"
+        android:text="Add a picture"
         android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="User Name"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Optional"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
         android:id="@+id/Name"
@@ -92,6 +119,9 @@ android:layout_marginTop="6dp"
         android:textColor="@color/white"
         android:textColorHint="#c1c1c0"
         android:textSize="18dp"
+        android:paddingEnd="5dp"
+        android:maxLength="20"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,13 +132,15 @@ android:layout_marginTop="6dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-
+        android:inputType="textPersonName"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_corners_edit_text"
         android:hint="Surname"
         android:paddingVertical="8dp"
         android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:maxLength="20"
         android:textColor="@color/white"
         android:textColorHint="#A3A3A3"
         android:textSize="18dp"
@@ -147,9 +179,12 @@ android:layout_marginTop="6dp"
         android:hint="Email"
         android:paddingVertical="8dp"
         android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:maxLength="40"
         android:textColor="@color/white"
         android:textColorHint="#c1c1c0"
         android:textSize="18dp"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -373,6 +408,7 @@ android:text="I agree that when i registerd in a workshop i will attend"        
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.64" />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

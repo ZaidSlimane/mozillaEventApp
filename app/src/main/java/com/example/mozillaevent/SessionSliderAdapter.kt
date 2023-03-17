@@ -3,9 +3,7 @@ package com.example.mozillaevent
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
-import androidx.core.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,12 +14,12 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import java.time.Instant
 import java.util.*
-import kotlin.collections.ArrayList
 
 class SessionsSliderAdapter(
     private var sessionList: ArrayList<Session>,
@@ -37,6 +35,7 @@ class SessionsSliderAdapter(
 ) : RecyclerView.Adapter<SessionsSliderAdapter.SessionViewHolder>() {
 
 
+
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SessionViewHolder {
         val view =
@@ -46,12 +45,19 @@ class SessionsSliderAdapter(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {
+        if (position == sessionList.size-2){
+            viewPager2.post(runnable)
+        }
         holder.sessionTitle.text = sessionList[position].cardName
         holder.sessionType.text = sessionList[position].type
-        holder.day.text = "" + sessionList[position].startDate!!.hours + ":" + sessionList[position].startDate!!.minutes + " - " + sessionList[position].endDate!!.hours + ":" + sessionList[position].endDate!!.minutes
+        val stime = String.format("%02d:%02d", sessionList[position].startDate!!.hours , sessionList[position].startDate!!.minutes)
+        val etime = String.format("%02d:%02d", sessionList[position].endDate!!.hours , sessionList[position].endDate!!.minutes)
+        holder.day.text = "" + stime + " - " + etime
         holder.sessionSalle.text = sessionList[position].Salle
             Glide.with(context!!)
             .load(sessionList[position].image)
+                .transform(RoundedCornersTransformation(40, 0))
+
             .into(holder.sessionImg)
 
         val date = Date.from(Instant.now())
@@ -67,6 +73,7 @@ class SessionsSliderAdapter(
             // Define the shared element transition
             val dayPair = Pair.create(daytransm as View, "day")
             val cardTransitionPair = Pair.create(holder.itemView, "card_transition")
+
             var mentorPair: Pair<View, String> = Pair.create(holder.itemView, "card_transition")
 
             // Set the mentorPair to the corresponding RecyclerView ViewHolder, if present
@@ -115,5 +122,12 @@ class SessionsSliderAdapter(
         val cardbg: CardView = itemView.findViewById(R.id.crdm)
 
 
+    }
+
+    private val runnable: Runnable = object : Runnable {
+        override fun run() {
+            sessionList.addAll(sessionList)
+            notifyDataSetChanged()
+        }
     }
 }

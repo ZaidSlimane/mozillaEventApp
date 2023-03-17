@@ -1,6 +1,7 @@
 package com.example.mozillaevent
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -27,14 +28,14 @@ class ShareCenter : AppCompatActivity() {
     private lateinit var addImagesbtn: TextView
     private lateinit var addImagesImg: ImageView
     private lateinit var uploadbtn: TextView
-    private lateinit var CommentCounter : TextView
+    private lateinit var CommentCounter: TextView
     private lateinit var uploadImg: ImageView
     private lateinit var ImagesList: ArrayList<Uri>
     private lateinit var mProgressDialog: ProgressDialog
     private lateinit var uri: Uri
     private var PICK_IMAGE_MULTIPLE = 1
     private lateinit var adap: ImagesAdapter
-    private var co:Int = 0
+    private var co: Int = 0
 
     companion object {
         val IMAGE_REQUEST_CODE = 1_000;
@@ -47,8 +48,10 @@ class ShareCenter : AppCompatActivity() {
         setContentView(R.layout.share_center)
         supportActionBar!!.hide()
 
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        window.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or
+                    WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+        )
 
 
         mProgressDialog = ProgressDialog(this)
@@ -71,40 +74,63 @@ class ShareCenter : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "comments must be > 20 characters", Toast.LENGTH_LONG).show()
 
-        val commentSection = findViewById<EditText>(R.id.editText)
+                val commentSection = findViewById<EditText>(R.id.editText)
 
-        val mTitleTextWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(commentSection.text.toString().trim().length <= 100 ){
-                    CommentCounter.text = (100 - commentSection.text.toString().trim().length).toString()
-                    CommentCounter.setTextColor(Color.GREEN)
-                }
-                else{
-                    CommentCounter.text = "0"
-                    Toast.makeText(applicationContext , "100 characters are allowed", Toast.LENGTH_LONG).show()
-                    CommentCounter.setTextColor(Color.RED)
+                val mTitleTextWatcher = object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        if (commentSection.text.toString().trim().length <= 100) {
+                            CommentCounter.text =
+                                (100 - commentSection.text.toString().trim().length).toString()
+                            CommentCounter.setTextColor(Color.GREEN)
+                        } else {
+                            CommentCounter.text = "0"
+                            Toast.makeText(
+                                applicationContext,
+                                "100 characters are allowed",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            CommentCounter.setTextColor(Color.RED)
+                        }
+
+                    }
+
+                    override fun afterTextChanged(s: Editable) {}
                 }
 
+                commentSection.addTextChangedListener(mTitleTextWatcher)
+
+                commentbtn.setOnClickListener {
+                    if (commentSection.text.isBlank()) {
+                        Toast.makeText(this, "Blank Field not allowed", Toast.LENGTH_LONG).show()
+                    } else {
+                        val sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+                        val logged = sharedPref.getBoolean("logged", false)
+                        val c = sharedPref.getString("name", "Anonymous")
+
+                        commentDataBase = FirebaseDatabase.getInstance().getReference("Comments")
+                        commentDataBase.child(c.toString()).push().setValue("${commentSection.text}")
+                            .addOnSuccessListener {
+                                commentSection.setText(" ")
+                            }
+                        commentSection.text.clear()
+                        Toast.makeText(this, "Thank you for helping us", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
-
-            override fun afterTextChanged(s: Editable) {}
         }
-
-        commentSection.addTextChangedListener(mTitleTextWatcher)
-
-        commentbtn.setOnClickListener {
-            if (commentSection.text.isBlank()) {
-                Toast.makeText(this, "Blank Field not allowed", Toast.LENGTH_LONG).show()
-            }
-
-            else{
-                commentDataBase = FirebaseDatabase.getInstance().getReference("Comments")
-                commentDataBase.child("Anonymous").push().setValue("${commentSection.text}")
-                commentSection.text.clear()
-                Toast.makeText(this, "Thank you for helping us", Toast.LENGTH_LONG).show()
-            }
-        }}}
 
 
 
@@ -121,18 +147,20 @@ class ShareCenter : AppCompatActivity() {
         addImagesImg = findViewById(R.id.imageView6)
         addImagesbtn.setOnClickListener {
             pickImageFromGallery()
-            Toast.makeText(this,"TIP: Long press to choose multiple images",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "TIP: Long press to choose multiple images", Toast.LENGTH_LONG)
+                .show()
         }
         addImagesImg.setOnClickListener {
             pickImageFromGallery()
-            Toast.makeText(this,"TIP: Long press to choose multiple images",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "TIP: Long press to choose multiple images", Toast.LENGTH_LONG)
+                .show()
 
         }
         uploadbtn = findViewById(R.id.tvUpload!!)
         uploadImg = findViewById(R.id.imageView7)
         uploadbtn.setOnClickListener {
             if (!ImagesList.isEmpty()) {
-                mProgressDialog.setMessage("Uploading Images "+ co + "/"+ ImagesList.size)
+                mProgressDialog.setMessage("Uploading Images " + co + "/" + ImagesList.size)
                 mProgressDialog.show()
                 for (i in 0..ImagesList.size - 1)
                     uploadImageToFirebase(ImagesList[i])
@@ -142,7 +170,7 @@ class ShareCenter : AppCompatActivity() {
         }
         uploadImg.setOnClickListener {
             if (!ImagesList.isEmpty()) {
-                mProgressDialog.setMessage("Uploading Images "+ co + "/"+ ImagesList.size)
+                mProgressDialog.setMessage("Uploading Images " + co + "/" + ImagesList.size)
                 mProgressDialog.show()
                 for (i in 0..ImagesList.size - 1)
                     uploadImageToFirebase(ImagesList[i])
@@ -199,14 +227,14 @@ class ShareCenter : AppCompatActivity() {
                 .addOnSuccessListener(
                     OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
                         co += 1
-                        mProgressDialog.setMessage("Uploading Images "+ co + "/"+ ImagesList.size)
-                        if (co==recyclerview.size) {
+                        mProgressDialog.setMessage("Uploading Images " + co + "/" + ImagesList.size)
+                        if (co == recyclerview.size) {
                             mProgressDialog.dismiss()
                             Toast.makeText(this, "Images Uploaded Successfully", Toast.LENGTH_LONG)
                                 .show()
                             ImagesList.clear()
                             adap.setImagesArrayList(ImagesList)
-                            co=0
+                            co = 0
                         }
                         taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                             val imageUrl = it.toString()
@@ -218,4 +246,4 @@ class ShareCenter : AppCompatActivity() {
                 })
         }
     }
-        }
+}

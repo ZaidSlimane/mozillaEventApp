@@ -28,7 +28,7 @@ class MentorActivity : AppCompatActivity() {
     private lateinit var fbBtn: Button
     private lateinit var instBtn: Button
     private lateinit var LinkedInBtn: Button
-    private lateinit var dayment:TextView
+    private lateinit var dayment: TextView
     private lateinit var backBtn: ImageView
     private lateinit var s: String
     private lateinit var day: TextView
@@ -41,14 +41,14 @@ class MentorActivity : AppCompatActivity() {
     private lateinit var workshopImage: ImageView
     private lateinit var Salle: TextView
     private lateinit var cardbg: CardView
-    private var d:Int = 1
+    private var d: Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mentor)
         supportActionBar?.hide()
 
         intent = getIntent()
-        d= intent.getIntExtra("d",1)
+        d = intent.getIntExtra("d", 1)
 
         initVars()
         fillTheFields()
@@ -62,7 +62,7 @@ class MentorActivity : AppCompatActivity() {
         val intent = getIntent()
         backBtn = findViewById(R.id.imageView6)
         s = intent.getStringExtra("act") ?: "e"
-val da = intent.getIntExtra("d",1)
+        val da = intent.getIntExtra("d", 1)
         if (s.trim() == "wrks") {
             ViewCompat.setTransitionName(mentCrd, "card_transition2")
             ViewCompat.setTransitionName(wrksCrd, "Mentor2")
@@ -123,8 +123,8 @@ val da = intent.getIntExtra("d",1)
                 val pair1: Pair<View, String> = Pair.create(wrksCrd, "card_transition")
                 val options = ActivityOptionsCompat
                     .makeSceneTransitionAnimation(this@MentorActivity, pair, pair1)
-                mentorSess.startDate?.let { it1 -> intent.putExtra("d", it1.day+1) }
-                intent.putExtra("Session",mentorSess)
+                mentorSess.startDate?.let { it1 -> intent.putExtra("d", it1.day + 1) }
+                intent.putExtra("Session", mentorSess)
                 intent.putExtra("act", "ment")
                 startActivity(intent, options.toBundle())
             }
@@ -189,7 +189,7 @@ val da = intent.getIntExtra("d",1)
     }
 
     private fun initVars() {
-        dayment=findViewById(R.id.dayment)
+        dayment = findViewById(R.id.dayment)
         mentorSess = intent.getParcelableExtra<Session>("m")!!
         mentorImage = findViewById(R.id.MentorImg4)
         mentorDesc = findViewById(R.id.ttm)
@@ -198,7 +198,7 @@ val da = intent.getIntExtra("d",1)
         workshopImage = findViewById(R.id.imageView55)
         workshopName = findViewById(R.id.SessionTitlem)
         workshopType = findViewById(R.id.SessionTypem)
-        workshopTime =findViewById(R.id.timem)
+        workshopTime = findViewById(R.id.timem)
         Salle = findViewById(R.id.salle2)
         cardbg = findViewById(R.id.sessbg)
         mentorDesc.setMovementMethod(ScrollingMovementMethod())
@@ -206,11 +206,17 @@ val da = intent.getIntExtra("d",1)
 
 
     private fun fillTheFields() {
-        dayment.text = "DAY "+ d.toString()
-        mentorDesc.text = mentorSess.mentorDesc
+        dayment.text = "DAY " + d.toString()
+
+
+        mentorDesc.text = mentorSess.mentorDesc!!.replace("\\n", "\n")
         workshopName.text = mentorSess.cardName
         workshopType.text = mentorSess.type
-        workshopTime.text = "" + mentorSess.startDate!!.hours + ":" + mentorSess.startDate!!.minutes + " - " + mentorSess.endDate!!.hours + ":" + mentorSess.endDate!!.minutes
+        val stime =
+            String.format("%02d:%02d", mentorSess.startDate!!.hours, mentorSess.startDate!!.minutes)
+        val etime =
+            String.format("%02d:%02d", mentorSess.endDate!!.hours, mentorSess.endDate!!.minutes)
+        workshopTime.text = "" + stime + " - " + etime
         Salle.text = mentorSess.Salle
         Glide.with(this)
             .load(mentorSess.mentorImg)
@@ -219,15 +225,15 @@ val da = intent.getIntExtra("d",1)
             .into(mentorImage)
         Glide.with(this)
             .load(mentorSess.image)
-
+            .transform(RoundedCornersTransformation(50, 0))
             .into(workshopImage)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val date = Date.from(Instant.now())
-        if (date.time.toInt()>mentorSess.startDate!!.time.toInt() && date.time.toInt()<mentorSess.endDate!!.time.toInt()) {
+            if (date.time.toInt() > mentorSess.startDate!!.time.toInt() && date.time.toInt() < mentorSess.endDate!!.time.toInt()) {
 
-            cardbg.setBackgroundResource(R.color.green_trnsp)
-        }
+                cardbg.setBackgroundResource(R.color.green_trnsp)
+            }
 
         }
 

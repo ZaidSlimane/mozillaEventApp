@@ -134,90 +134,99 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="100dp"
                         android:transitionName="card_transition"
+                        app:cardBackgroundColor="#00000000"
                         app:cardCornerRadius="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:id="@+id/imageView5"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="fitXY"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:src="@drawable/t" />
+                            android:padding="8dp"
+                            android:background="@color/transparent">
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_gravity="bottom"
-                            app:cardBackgroundColor="#80000000"
-                            app:cardElevation="100dp"
-                            android:id="@+id/bgsess">
-
-                            <RelativeLayout
+                            <ImageView
+                                android:id="@+id/imageView5"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                >
+                                android:scaleType="fitXY"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                                <TextView
-                                    android:id="@+id/SessionTitlem"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="Development"
-                                    android:textColor="@color/white"
-                                    android:textSize="19sp" />
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/bgsess"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom"
+                                app:cardBackgroundColor="#80000000"
+                                app:cardCornerRadius="15dp"
+                                app:cardElevation="100dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                                app:layout_constraintStart_toStartOf="parent">
 
-                                <TextView
-                                    android:id="@+id/SessionTypem"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/SessionTitlem"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginStart="30dp"
-                                    android:text="workshop"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="15sp" />
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
 
-                                <TextView
-                                    android:id="@+id/time"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="20dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:text="14:30 - 16:00"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="11sp" />
+                                    <TextView
+                                        android:id="@+id/SessionTitlem"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="20dp"
+                                        android:text="Development"
+                                        android:textColor="@color/white"
+                                        android:textSize="19sp" />
 
-                                <ImageView
-                                    android:id="@+id/any1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_toStartOf="@id/time"
-                                    android:src="@drawable/ic_baseline_access_time_filled_24" />
+                                    <TextView
+                                        android:id="@+id/SessionTypem"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/SessionTitlem"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginStart="30dp"
+                                        android:text="workshop"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="15sp" />
 
-                                <TextView
-                                    android:id="@+id/salle1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_toStartOf="@id/any1"
-                                    android:text="workshop"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="12sp" />
-                            </RelativeLayout>
+                                    <TextView
+                                        android:id="@+id/time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginEnd="20dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="14:30 - 16:00"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="11sp" />
+
+                                    <ImageView
+                                        android:id="@+id/any1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_toStartOf="@id/time"
+                                        android:src="@drawable/ic_baseline_access_time_filled_24" />
+
+                                    <TextView
+                                        android:id="@+id/salle1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:layout_toStartOf="@id/any1"
+                                        android:text="workshop"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="12sp" />
+                                </RelativeLayout>
 
 
-                        </androidx.cardview.widget.CardView>
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
 
@@ -237,13 +246,13 @@
                             android:layout_marginTop="15dp"
                             app:cardCornerRadius="23dp"
 
-
+                    app:cardBackgroundColor="#00000000"
                             app:layout_constraintLeft_toLeftOf="parent">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#51504f">
+                                android:background="@color/transparent">
 
                                 <ImageView
                                     android:id="@+id/MentorImg4"
@@ -251,7 +260,8 @@
                                     android:layout_height="120dp"
                                     android:layout_margin="7dp"
                                     android:clipToOutline="true"
-                                    android:scaleType="centerCrop"
+                                    android:scaleType="fitCenter"
+                                    android:background="@drawable/rounded_cornersimg"
                                     android:src="@drawable/ouassim"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -306,7 +316,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:layout_marginStart="6dp"
+
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="13dp"
                             android:layout_toEndOf="@id/card_view3"
@@ -324,7 +334,8 @@
                             android:layout_below="@id/textView9"
                             android:layout_toEndOf="@id/card_view3"
                             android:maxLines="9"
-
+                            android:layout_marginStart="5dp"
+                            android:textSize="17dp"
                             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.."
                             android:textColor="@color/white"
                             app:layout_constraintStart_toEndOf="@+id/card_view3"

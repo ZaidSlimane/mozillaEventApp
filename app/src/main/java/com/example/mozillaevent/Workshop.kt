@@ -89,18 +89,21 @@ private var d:Int = 1
         ViewCompat.setTransitionName(cardView2, "Mentor")
         ViewCompat.setTransitionName(day, "day")
 
+
         window.sharedElementEnterTransition.addListener(@RequiresApi(Build.VERSION_CODES.O)
         object : TransitionListenerAdapter() {
             override fun onTransitionStart(transition: Transition?) {
                 // Hide the original CardView during the transition
-                cardView.visibility = View.INVISIBLE
-                cardView2.visibility = View.INVISIBLE
+               // cardView.visibility = View.INVISIBLE
+                //cardView2.visibility = View.INVISIBLE
+
+
             }
 
             override fun onTransitionEnd(transition: Transition?) {
                 // Show the zoomed-in CardView after the transition is complete
-                cardView.visibility = View.VISIBLE
-                cardView2.visibility = View.VISIBLE
+              //  cardView.visibility = View.VISIBLE
+              //  cardView2.visibility = View.VISIBLE
             }
         })
 
@@ -108,10 +111,10 @@ private var d:Int = 1
             onBackPressed()
         }
 
-        val uri = "@drawable/t"
+       /* val uri = "@drawable/t"
         val imageResource = resources.getIdentifier(uri, null, packageName)
         val res = resources.getDrawable(imageResource, null) as BitmapDrawable
-        imageView.setImageBitmap(res.bitmap)
+        imageView.setImageBitmap(res.bitmap)*/
 
         cardView2.setOnClickListener {
             val intent = Intent(this@Workshop, MentorActivity::class.java)
@@ -229,16 +232,19 @@ private var d:Int = 1
             dayT.text = "DAY "+ d.toString()
             workshopName.text = workshop.cardName
             workshopType.text = workshop.type
-            workshopDesc.text = workshop.description
-            workshopTime.text =
-                "" + workshop.startDate!!.hours + ":" + workshop.startDate!!.minutes + " - " + workshop.endDate!!.hours + ":" + workshop.endDate!!.minutes
+            workshopDesc.text = workshop.description!!.replace("\\n", "\n")
+            val stime = String.format("%02d:%02d", workshop.startDate!!.hours ,workshop.startDate!!.minutes)
+            val etime = String.format("%02d:%02d", workshop.endDate!!.hours , workshop.endDate!!.minutes)
+            workshopTime.text = "" + stime + " - " + etime
            Salle.text= workshop.Salle
             Glide.with(this)
                 .load(workshop.image)
+                .transform(RoundedCornersTransformation(50, 0))
+
                 .into(workshopImageView)
             mentorName.text = workshop.mentorName
             mentorFName.text = workshop.mentorFName
-            mentorDesc.text = workshop.mentorDesc
+            mentorDesc.text = workshop.mentorDesc!!.replace("\\n", "\n")
             Glide.with(this)
                 .load(workshop.mentorImg)
                 .transform(RoundedCornersTransformation(50, 0))

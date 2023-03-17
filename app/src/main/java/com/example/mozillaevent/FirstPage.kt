@@ -8,8 +8,10 @@ import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -29,6 +32,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.database.*
+import java.io.IOException
 import java.time.Instant
 import java.util.*
 
@@ -52,6 +56,7 @@ class FirstPage : AppCompatActivity() {
     private lateinit var nameTextView: TextView
     private val LOGIN_REQUEST_CODE = 1
     private lateinit var name: String
+    private var imageUri: Uri? = null
     var DAY = 1
     private val password: String = "MozillaManager"
 
@@ -113,10 +118,31 @@ class FirstPage : AppCompatActivity() {
 
         if (logged) {
             nameTextView.text = name
+            if (sharedPref.getString("i", "").equals("y")){
+                loadImage()
+
+
+          }else{
+
+                Glide.with(this)
+                    .load(R.drawable.profile)
+
+                    .transform(RoundedCornersTransformation(50, 0))
+
+                    .into(photo)
+            }
 
         } else {
+            Glide.with(this)
+                .load(R.drawable.camera)
+
+                //.transform(RoundedCornersTransformation(50, 0))
+
+                .into(photo)
+
             LoginLayout.setOnClickListener({
                 intentbtmsheet = Intent(this, Login::class.java)
+                intentbtmsheet.putExtra("change", true)
                 startActivityForResult(intentbtmsheet, LOGIN_REQUEST_CODE)
             })
         }
@@ -146,14 +172,9 @@ class FirstPage : AppCompatActivity() {
         SessList.add(Session("", "Development", "", "", "", "", "", "workshop", date, date))
 */
 
-        Glide.with(this)
-            .load(R.drawable.profile)
 
-            //.transform(RoundedCornersTransformation(50, 0))
 
-            .into(photo)
-
-        val color = ContextCompat.getColor(this, R.color.cameraBackground2)
+        val color = ContextCompat.getColor(this, R.color.cameraBackground)
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.OVAL
         shape.setColor(color)
@@ -228,6 +249,7 @@ class FirstPage : AppCompatActivity() {
                     }
                     //TODO make a progressBar for both mentors and workshops
                     Recviewprogbar.visibility = View.GONE
+                    SessList.sort()
                     viewPager2.adapter = adapter
                     buildMentorsList()
                 }
@@ -276,32 +298,24 @@ class FirstPage : AppCompatActivity() {
     fun changePr() {
         val sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
-// Clear all data in shared preferences
-        with(sharedPref.edit()) {
-            clear()
-            apply() // apply changes to shared preferences
-        }
+
         // Create intent to restart the activity
         // Create intent to restart the activity
         val intent = Intent(this, FirstPage::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
 
-// Start the activity
-        this.startActivity(intent)
-
-// Finish the current activity
-        this.finish()
 
         intentbtmsheet = Intent(this, Login::class.java)
+        intentbtmsheet.putExtra("change", true)
         startActivityForResult(intentbtmsheet, LOGIN_REQUEST_CODE)
 
     }
 
 
-    fun FacisSpaceImg(view: View){
+    fun FacisSpaceImg(view: View) {
 
     }
-    fun FacisSpaceTxt(view: View){
+
+    fun FacisSpaceTxt(view: View) {
 
     }
 
@@ -402,6 +416,16 @@ class FirstPage : AppCompatActivity() {
                     val sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
                     name = sharedPref.getString("name", "")!!
                     nameTextView.text = name
+                    if (sharedPref.getString("img", "")!!.isNotBlank())
+                        loadImage()
+                    else
+                        Glide.with(this)
+                            .load(R.drawable.profile)
+
+                            .transform(RoundedCornersTransformation(50, 0))
+
+                            .into(photo)
+
                     LoginLayout.setOnClickListener {
 
                     }
@@ -412,6 +436,31 @@ class FirstPage : AppCompatActivity() {
                 // Handle the cancellation
                 // ...
             }
+        }
+    }
+
+    fun loadImage() {
+        val sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        // Get the Uri of data
+        imageUri = sharedPref.getString("img","")?.toUri()
+        try {
+
+            // Setting image on image view using Bitmap
+            /*val bitmap = MediaStore.Images.Media
+                .getBitmap(
+                    contentResolver,
+                    imageUri
+                )*/
+            Glide.with(this@FirstPage)
+                .load(imageUri)
+                .centerCrop()
+                .transform(RoundedCornersTransformation(50, 0))
+
+                .into(photo)
+
+        } catch (e: IOException) {
+            // Log the exception
+            e.printStackTrace()
         }
     }
 

@@ -25,7 +25,11 @@ class Session(
     val hasMentor: Boolean? = null
 
 
-) : Parcelable {
+) : Parcelable , Comparable<Session> {
+    override fun compareTo(other: Session): Int {
+        return this.startDate!!.time.compareTo(other.startDate!!.time)
+    }
+
     /*constructor(
         image: String,
         sessionName: String,

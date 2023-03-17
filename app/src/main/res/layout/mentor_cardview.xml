@@ -5,11 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="23dp"
     android:layout_margin="5dp"
-    android:id="@+id/mentCard">
+    android:id="@+id/mentCard"
+    app:cardBackgroundColor="#00000000">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#51504f"
+        android:background="@color/transparent"
         >
 
         <ImageView
@@ -20,8 +21,8 @@
 
 
             android:clipToOutline="true"
-            android:scaleType="centerCrop"
-
+            android:scaleType="fitCenter"
+        android:background="@drawable/rounded_cornersimg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
             android:id="@+id/MentorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="3dp"
             android:text="Azib"
             android:textAllCaps="true"
@@ -49,7 +50,7 @@
             android:textSize="9dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/MentorName"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="15dp"
             android:textAllCaps="true"/>
 
         <ImageView
